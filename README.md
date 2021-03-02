@@ -6,6 +6,8 @@ Emailer provides
 
 ## Example
 
+    
+
     ee = EmailError(
         from_addr = 'me@example.com',
         to_addr = 'others@example.com',
@@ -21,3 +23,4 @@ Emailer provides
         return a
 
     make_a_error()
+

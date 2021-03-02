@@ -19,7 +19,14 @@ class EmailError():
                 raise_on_error = False, print_on_error = False, email_on_error = True, 
                 verbose = True ) -> None:
         """
-        Email error message, tracebacks when error
+        Email error message, tracebacks when error occurs
+        Email sent through simple smtp withou any authentication process
+
+        Input
+        ----- 
+        from_addr: str represents email address
+        to_addr: str represnets email address or list of address
+
 
         """
 
@@ -39,6 +46,7 @@ class EmailError():
         self.verbose = verbose
 
         self.msg = None
+        
     
     def _format_addr(self, s):
         name, addr = parseaddr(s)

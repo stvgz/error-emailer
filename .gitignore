@@ -1,7 +1,11 @@
 __pycache__
-
+.vscode
 
 setup.py
 setup.cfg
 pyproject.toml
-erquirements.txt
+requirements.txt
+
+dist/
+*.egg-info
+build
