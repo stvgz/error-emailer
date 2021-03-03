@@ -1,5 +1,5 @@
 import unittest
-from error_emailer import EmailError
+from erroremailer import EmailError
 class TestEmail(unittest.TestCase):
 
 
