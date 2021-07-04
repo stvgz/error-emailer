@@ -15,8 +15,8 @@ class EmailError():
 
     def __init__(self, from_addr: str = None, to_addr : str or List = None, smtp_addr : str = None, 
                 error_msg_title = 'Error', 
-                error_msg_content = 'type+value+traceback',
-                raise_on_error = False, print_on_error = False, send_email = True, 
+                error_msg_content = 'Error occurred',
+                raise_on_error = False, print_on_error = False, send_email_on_error = True, 
                 verbose = False ) -> None:
         """
         Email error message, tracebacks when error occurs
@@ -42,7 +42,7 @@ class EmailError():
         self.error_msg_content = error_msg_content
         self.raise_on_error = raise_on_error,
         self.print_on_error = print_on_error,
-        self.send_email = send_email
+        self.send_email_on_error = send_email_on_error
         self.verbose = verbose
 
         self.msg = None
@@ -53,17 +53,25 @@ class EmailError():
         return formataddr((Header(name, 'utf-8').encode(), addr))
 
 
-    def make_email(self):
-        
+    def make_email(self, error_msg = None):
+        """
+        Make email
+        """
         msg = MIMEMultipart('mixed')
 
         msg['From'] = self._format_addr("From <{}>".format(self.from_addr))
         msg['To'] = self._format_addr("To <{}>".format(self.from_addr))
         msg['Subject'] = Header(self.error_msg_title, 'utf-8').encode()
 
-        msg.attach(MIMEText(self.error_msg_content, 'plain', 'utf-8'))
+        if error_msg is None:
+            # replace default email 
+            msg.attach(MIMEText(self.error_msg_content, 'plain', 'utf-8'))
+        else:
+            msg.attach(MIMEText(error_msg, 'plain', 'utf-8'))
 
         self.msg = msg
+
+        return msg
 
 
     def send_email(self):
@@ -75,6 +83,15 @@ class EmailError():
         s.quit()
 
         print('Sent Email from {} to {} address. '.format(self.from_addr, len(self.to_addr)))
+
+    def send_error_email(self,error_msg = None):
+        """
+        Make and send email
+        """
+        self.make_email(error_msg = error_msg)
+        self.send_email()
+
+    
 
     def email_on_error(self):
 
@@ -93,7 +110,7 @@ class EmailError():
                     if self.print_on_error:
                         print("Catched Error During executing", type, value, traceback)
                     
-                    if self.send_email:
+                    if self.send_email_on_error:
                         
 
                         self.make_email()
