@@ -2,7 +2,16 @@
 
 Emailer provides
 
-a decorator to send emails on error instead of raise an error
+a decorator to send emails on error instead of raise an error.
+
+Usefull when
+
+1. Code should send out some kind of "alert" without breaking any code
+1. Complex error handling isn't needed or isn't a good choice cosidering cost/value
+
+E.g. You are writing an script to do some ETL work for a report for your self or a small group
+It need to be reliable but good enough if you know it breaks and fix afterwards
+
 
 Emails will be constructed as MIMEMultipart contains only simple text.
 And sent throught smtp wihtout any authentication, which suitsmost of internal smtp servers.
@@ -12,7 +21,7 @@ And sent throught smtp wihtout any authentication, which suitsmost of internal s
 
 Install with pip
 
-> pip install error-emailer
+> pip install error_emailer
 
 ## Email construct
 
@@ -33,11 +42,12 @@ Email constructed as MIMEMultipart with default
         to_addr = 'others@example.com',
         smtp_addr = '10.0.0.1@some-smtp.com',
         # set send_email to False for test
-        send_email = False,
+        send_email_on_error = False,
         error_msg_title = 'Error occured in my best script"
         error_msg_content = 'Error occured in my best script"
         )
-
+    
+    # define a function with deco
     @ee.email_on_error()
     def make_a_error():
 
@@ -59,7 +69,7 @@ Email constructed as MIMEMultipart with default
         to_addr = 'others@example.com',
         smtp_addr = '10.0.0.1@some-smtp.com',
         # set send_email to False for test
-        send_email = False,
+        send_email_on_error = False,
         error_msg_title = 'Error occured in my best script"
         error_msg_content = 'Error occured in my best script"
         )
