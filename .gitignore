@@ -10,3 +10,6 @@ requirements.txt
 dist/
 *.egg-info
 build
+
+*.ipynb
+ee_example.py
