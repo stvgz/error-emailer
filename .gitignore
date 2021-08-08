@@ -1,9 +1,7 @@
 __pycache__
 .vscode
 
-setup.py
-setup.cfg
-setup.md
+
 pyproject.toml
 requirements.txt
 
