@@ -1,9 +1,32 @@
 # How to Build this project and upload
 
-## build with python build
-python -m build
+Introduce how to build this project and upload to pypi as a package
 
-## (optional) test upload
+---
+
+## Project structure
+
+Refer to this project 
+
+or 
+
+[Learn how to package your Python code for PyPI.](https://packaging.python.org/tutorials/packaging-projects/)
+
+## build with python build
+
+requires anaconda env with setuptools 
+
+Run
+
+>python -m build
+
+under project directory
+
+
+---
+
+
+## (optional) Test upload to testpypi
 twine upload --repository testpypi dist/*
 
 ## test install and uninstall if already installed
@@ -11,12 +34,18 @@ twine upload --repository testpypi dist/*
 pip uninstall error-emailer-stevegao
 pip install --index-url https://test.pypi.org/simple/ --no-deps error-emailer-stevegao
 
-## test usage
-import error_emailer_stevegao
+
+## Test usage in python
+
+>import error_emailer_stevegao
 
 
-# change name 
-python -m build
+---
 
-# upload to pypi
-twine upload dist/*
+## Upload to official pypi 
+
+
+> python -m build
+
+## upload to official pypi with twine
+> twine upload dist/*

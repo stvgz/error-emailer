@@ -20,9 +20,9 @@ from typing import List
 
 class EmailError():
 
-    def __init__(self, from_addr: str = None, 
-                to_addr : str or List = None, 
-                smtp_addr : str = None, 
+    def __init__(self, from_addr = None, 
+                to_addr = None, 
+                smtp_addr = None, 
                 error_msg_title = 'Error Occurred During Executing', 
                 error_msg_content = 'type+value+traceback',
                 raise_on_error = False,
