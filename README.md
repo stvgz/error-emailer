@@ -21,7 +21,7 @@ And sent throught smtp wihtout any authentication, which suitsmost of internal s
 
 Install with pip
 
-> pip install error_emailer
+> pip install error-emailer
 
 ## Email construct
 
